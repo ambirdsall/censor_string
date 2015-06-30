@@ -4,6 +4,7 @@ using namespace std;
 
 string CensorText1(string text, string remove);
 string CensorText2(string &text, string remove);
+string CensorText3(string &text, string remove);
 
 int main()
 {
@@ -14,7 +15,7 @@ int main()
   cout << "Word. And what should be stripped from it? ";
   cin >> toStrip;
 
-  censoredText = CensorText2(text, toStrip);
+  censoredText = CensorText3(text, toStrip);
 
   cout << "'" << text << "'? More like '" << censoredText << "', AMIRITE?!";
   /* assert(CensorText1(test, "os") == "Ott dg"); */
@@ -66,4 +67,9 @@ string CensorText2(string &text, string remove)
   }
 
   return text;
+};
+
+string CensorText3(string &text, string remove)
+{
+  return text = CensorText1(text, remove);
 };
