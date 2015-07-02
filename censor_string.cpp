@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 
 using namespace std;
 
@@ -8,17 +9,25 @@ string CensorText3(string &text, string remove);
 
 int main()
 {
-  string text, toStrip, censoredText;
+  string nonDestructiveText   = "Oh, thirty hot dogs.",
+         destructiveText1     = "Oh, thirty hot dogs.",
+         destructiveText2     = "Oh, thirty hot dogs.",
+         toStrip              = "t dO",
+         result               = "h,hiryhoogs.";
 
-  cout << "What's the string, chief? ";
-  cin >> text;
-  cout << "Word. And what should be stripped from it? ";
-  cin >> toStrip;
+  // CensorText1 should return censored string without changing input string
+  assert(CensorText1(nonDestructiveText, toStrip) == result);
+  assert(nonDestructiveText != result);
 
-  censoredText = CensorText3(text, toStrip);
+  // CensorText2 should return censored string and change input string
+  assert(CensorText2(destructiveText1, toStrip) == result);
+  assert(destructiveText1 == result);
 
-  cout << "'" << text << "'? More like '" << censoredText << "', AMIRITE?!";
-  /* assert(CensorText1(test, "os") == "Ott dg"); */
+  // CensorText3 should behave the same as CensorText2
+  assert(CensorText3(destructiveText2, toStrip) == result);
+  assert(destructiveText2 == result);
+
+  cout << "No bugs found!\n";
 }
 
 string CensorText1(string text, string remove)
